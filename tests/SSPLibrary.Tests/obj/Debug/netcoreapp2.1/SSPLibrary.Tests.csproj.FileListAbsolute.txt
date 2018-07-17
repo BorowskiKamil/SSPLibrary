@@ -1,0 +1,17 @@
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/SSPLibrary.Tests.deps.json
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/SSPLibrary.Tests.runtimeconfig.json
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/SSPLibrary.Tests.runtimeconfig.dev.json
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/SSPLibrary.Tests.dll
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/SSPLibrary.Tests.pdb
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/SSPLibrary.dll
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/bin/Debug/netcoreapp2.1/SSPLibrary.pdb
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/obj/Debug/netcoreapp2.1/SSPLibrary.Tests.csprojAssemblyReference.cache
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/obj/Debug/netcoreapp2.1/SSPLibrary.Tests.csproj.CoreCompileInputs.cache
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/obj/Debug/netcoreapp2.1/SSPLibrary.Tests.AssemblyInfoInputs.cache
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/obj/Debug/netcoreapp2.1/SSPLibrary.Tests.AssemblyInfo.cs
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/obj/Debug/netcoreapp2.1/SSPLibrary.Tests.csproj.CopyComplete
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/obj/Debug/netcoreapp2.1/SSPLibrary.Tests.dll
+/Users/Kamil/MEGA/Projects/C#/SSPLibrary/tests/SSPLibrary.Tests/obj/Debug/netcoreapp2.1/SSPLibrary.Tests.pdb

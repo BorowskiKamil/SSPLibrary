@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{591C31D9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSPLibrary.Tests", "tests\SSPLibrary.Tests\SSPLibrary.Tests.csproj", "{9D3CF54F-3052-49D4-82C0-9376C031903B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{A6BD98C0-B69E-4EF1-8B32-CA75FDCEFF60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSPLibrary.Demo", "demo\SSPLibrary.Demo\SSPLibrary.Demo.csproj", "{84124C7A-3A7F-4080-9C9E-B2EF04473D53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,8 +50,21 @@ Global
 		{9D3CF54F-3052-49D4-82C0-9376C031903B}.Release|x64.Build.0 = Release|Any CPU
 		{9D3CF54F-3052-49D4-82C0-9376C031903B}.Release|x86.ActiveCfg = Release|Any CPU
 		{9D3CF54F-3052-49D4-82C0-9376C031903B}.Release|x86.Build.0 = Release|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Debug|x64.Build.0 = Debug|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Debug|x86.Build.0 = Debug|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|x64.ActiveCfg = Release|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|x64.Build.0 = Release|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|x86.ActiveCfg = Release|Any CPU
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9D3CF54F-3052-49D4-82C0-9376C031903B} = {591C31D9-A1B8-44D2-9698-562770EE39A9}
+		{84124C7A-3A7F-4080-9C9E-B2EF04473D53} = {A6BD98C0-B69E-4EF1-8B32-CA75FDCEFF60}
 	EndGlobalSection
 EndGlobal
