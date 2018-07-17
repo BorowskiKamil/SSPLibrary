@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SSPLibrary.Demo.Repositories;
 
 namespace SSPLibrary.Demo
 {
@@ -28,8 +29,10 @@ namespace SSPLibrary.Demo
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
             .AddSSP(options => 
             {
-                options.PagingOptions.DefaultLimit = 50;
+                options.PagingOptions.DefaultLimit = 5;
             });
+
+            services.AddScoped<ITasksRepository, TasksRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
