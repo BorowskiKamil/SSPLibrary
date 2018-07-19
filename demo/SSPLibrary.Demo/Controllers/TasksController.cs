@@ -1,6 +1,8 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using SSPLibrary.Demo.Models;
 using SSPLibrary.Demo.Repositories;
+using SSPLibrary.Filters;
 using SSPLibrary.Models;
 
 namespace SSPLibrary.Demo.Controllers
@@ -16,12 +18,11 @@ namespace SSPLibrary.Demo.Controllers
 			_repository = repository;
 		}
 
-		[HttpGet]
-        public IActionResult GetAll(QueryParameters<TodoTask> queryParameters)
+		[HttpGet(Name = nameof(GetAllTasks))]
+        public IActionResult GetAllTasks(QueryParameters<TodoTask> queryParameters)
         {
             var result = _repository.GetTasks(queryParameters);
-
-			return Ok(result);
+			return Ok(result.ToPagedCollection(queryParameters));
         }
 	}
 }

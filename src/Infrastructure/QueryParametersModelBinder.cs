@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SSPLibrary.Models;
 
@@ -23,10 +25,14 @@ namespace SSPLibrary.Infrastructure
 
 			var queryParams = HttpUtility.ParseQueryString(bindingContext.HttpContext.Request.QueryString.Value);
 
-			foreach (var queryParamKey in queryParams.Keys)
-			{
-				Console.WriteLine($"Key: {queryParamKey.ToString()}, Value: {queryParams[queryParamKey.ToString()]}");
-			}
+			// foreach (var queryParamKey in queryParams.Keys)
+			// {
+			// 	Console.WriteLine($"Key: {queryParamKey.ToString()}, Value: {queryParams[queryParamKey.ToString()]}");
+			// }
+
+			var action = bindingContext.ActionContext.ActionDescriptor as ControllerActionDescriptor;
+
+			paramsInstance.ActionName = action.ActionName;
 
 			if (int.TryParse(queryParams[nameof(paramsInstance.PagingParameters.Limit).ToCamelCase()], out int limitResult))
 			{

@@ -9,7 +9,7 @@ namespace SSPLibrary.Demo.Repositories
 	public class TasksRepository : ITasksRepository
 	{
 
-		public IEnumerable<TodoTask> GetTasks(QueryParameters<TodoTask> queryParameters)
+		public PagedResults<TodoTask> GetTasks(QueryParameters<TodoTask> queryParameters)
 		{
 			var entities = GenerateFakeTasks().AsQueryable().ApplyPaging(queryParameters);
 

@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using SSPLibrary.Filters;
 using SSPLibrary.Infrastructure;
 
 namespace SSPLibrary
@@ -16,6 +17,8 @@ namespace SSPLibrary
 
             mvcBuilder.AddMvcOptions(opt =>
             {
+                opt.Filters.Add(typeof(LinkRewritingFilter));
+
                 opt.ModelBinderProviders.Insert(0, new QueryParametersBinderProvider());
             });
 

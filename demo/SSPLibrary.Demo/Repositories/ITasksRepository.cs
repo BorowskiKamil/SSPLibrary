@@ -6,6 +6,6 @@ namespace SSPLibrary.Demo.Repositories
 {
 	public interface ITasksRepository
 	{
-		IEnumerable<TodoTask> GetTasks(QueryParameters<TodoTask> queryParameters);
+		PagedResults<TodoTask> GetTasks(QueryParameters<TodoTask> queryParameters);
 	}
 }

@@ -15,8 +15,6 @@ namespace SSPLibrary.Infrastructure
                 throw new ArgumentNullException(nameof(context));
             }
 
-            Console.WriteLine($"Name: {context.Metadata.ModelType.FullName}");
-
             if (context.Metadata.ModelType.GetGenericTypeDefinition() == typeof(QueryParameters<>))
             {
 				return new BinderTypeModelBinder(typeof(QueryParametersModelBinder));

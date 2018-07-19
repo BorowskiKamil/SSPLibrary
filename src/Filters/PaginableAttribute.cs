@@ -1,5 +1,7 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace SSPLibrary.Filters
@@ -12,11 +14,19 @@ namespace SSPLibrary.Filters
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            var someString = "Elllo";
+            var result = context.Result;
 
-            byte[] bytes = Encoding.ASCII.GetBytes(someString);
+            if (result is OkObjectResult)
+            {
+                var objectResult = (OkObjectResult)result;
 
-            context.HttpContext.Response.Body.WriteAsync(bytes, 0, bytes.Length);
+                // typeof(objectResult.Value);
+
+                // var newResult = new PagedCollection<>
+                // {
+
+                // };
+            }
 
             base.OnResultExecuting(context);
         }

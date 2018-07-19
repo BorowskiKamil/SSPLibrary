@@ -17,7 +17,6 @@ namespace SSPLibrary.Demo.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> GetAll(QueryParameters<TodoTask> queryParameters)
         {
-            Console.WriteLine($"LimitVal: {queryParameters.PagingParameters.Limit.Value}");
             return new string[] { "value1", "value2" };
         }
 
