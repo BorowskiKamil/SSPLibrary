@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SSPLibrary.Infrastructure
 {
-    public class SortOptionsProcessor<TEntity>
+    public class SortOptionsProcessor<T>
     {
 
         private readonly string[] _orderBy;
@@ -64,7 +64,7 @@ namespace SSPLibrary.Infrastructure
 
         }
 
-        public IQueryable<TEntity> Apply(IQueryable<TEntity> query)
+        public IQueryable<T> Apply(IQueryable<T> query)
         {
             var terms = GetValidTerms().ToArray();
 
@@ -87,12 +87,12 @@ namespace SSPLibrary.Infrastructure
 
             foreach (var term in terms)
             {
-                var propertyInfo = ExpressionHelper.GetPropertyInfo<TEntity>(term.Name);
+                var propertyInfo = ExpressionHelper.GetPropertyInfo<T>(term.Name);
 
-                var obj = ExpressionHelper.Parameter<TEntity>();
+                var obj = ExpressionHelper.Parameter<T>();
 
                 var key = ExpressionHelper.GetPropertyExpression(obj, propertyInfo);
-                var keySelector = ExpressionHelper.GetLambda(typeof(TEntity), propertyInfo.PropertyType, obj, key);
+                var keySelector = ExpressionHelper.GetLambda(typeof(T), propertyInfo.PropertyType, obj, key);
 
                 modifiedQuery = ExpressionHelper.CallOrderByOrThenBy(modifiedQuery, useThenBy, term.Descending, propertyInfo.PropertyType, keySelector);
 
@@ -103,7 +103,7 @@ namespace SSPLibrary.Infrastructure
         }
 
         private static IEnumerable<SortTerm> GetTermsFromModel()
-            => typeof(TEntity).GetTypeInfo()
+            => typeof(T).GetTypeInfo()
                         .DeclaredProperties
                         .Where(p => p.GetCustomAttributes<SortableAttribute>().Any())
                         .Select(p => new SortTerm 

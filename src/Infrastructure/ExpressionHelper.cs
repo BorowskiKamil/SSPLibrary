@@ -52,8 +52,8 @@ namespace SSPLibrary.Infrastructure
                 .Invoke(null, new object[] { query, predicate });
         }
 
-        public static IQueryable<TEntity> CallOrderByOrThenBy<TEntity>(
-            IQueryable<TEntity> modifiedQuery,
+        public static IQueryable<T> CallOrderByOrThenBy<T>(
+            IQueryable<T> modifiedQuery,
             bool useThenBy,
             bool descending,
             Type propertyType,
@@ -65,9 +65,9 @@ namespace SSPLibrary.Infrastructure
 
             var method = QueryableMethods
                 .First(x => x.Name == methodName && x.GetParameters().Length == 2)
-                .MakeGenericMethod(new[] { typeof(TEntity), propertyType });
+                .MakeGenericMethod(new[] { typeof(T), propertyType });
 
-            return (IQueryable<TEntity>)method.Invoke(null, new object[] { modifiedQuery, keySelector });
+            return (IQueryable<T>)method.Invoke(null, new object[] { modifiedQuery, keySelector });
         }
     }
 }

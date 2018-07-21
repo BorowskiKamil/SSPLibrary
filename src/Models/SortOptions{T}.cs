@@ -6,25 +6,27 @@ using SSPLibrary.Infrastructure;
 
 namespace SSPLibrary.Models
 {
-    public class SortOptions<TEntity> : IValidatableObject
+    public class SortOptions<T> : IValidatableObject
     {
 
         public string[] OrderBy { get; set; }
 
-        public IEnumerable<ValidationResult> ParseQuery(string parameter, ValidationContext validationContext)
+        public void ParseQuery(string parameter)
         {
+            if (parameter == null) return;
+
             string[] order = parameter.Split(',');
             OrderBy = order.Select(x => 
             {
                 return x.Trim();
             }).ToArray();
 
-            return Validate(validationContext);
+            // return Validate(validationContext);
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var processor = new SortOptionsProcessor<TEntity>(OrderBy);
+            var processor = new SortOptionsProcessor<T>(OrderBy);
 
             var validTerms = processor.GetValidTerms().Select(x => x.Name);
 
@@ -38,11 +40,5 @@ namespace SSPLibrary.Models
                 );
             }
         }
-
-        // public IQueryable<TEntity> Apply(IQueryable<TEntity> query)
-        // {
-        //     var processor = new SortOptionsProcessor<TEntity>(OrderBy);
-        //     return processor.Apply(query);
-        // }
     }
 }

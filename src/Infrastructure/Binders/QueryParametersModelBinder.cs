@@ -33,8 +33,6 @@ namespace SSPLibrary.Infrastructure
 
 			paramsInstance.ActionName = action.ActionName;
 
-			var validationContext = new ValidationContext(paramsInstance);
-
 			if (int.TryParse(queryParams[nameof(paramsInstance.PagingParameters.Limit).ToCamelCase()], out int limitResult))
 			{
 				paramsInstance.PagingParameters.Limit = Math.Min(limitResult, SSPOptions.Instance.PagingOptions.MaxLimit);
@@ -54,22 +52,10 @@ namespace SSPLibrary.Infrastructure
 			}
 
 			var orderByKey = queryParams.AllKeys.Where(x => Regex.IsMatch(x, "OrderBy", RegexOptions.IgnoreCase)).FirstOrDefault();
-			if (orderByKey != null)
-			{
-				var errors = paramsInstance.ApplyQueryParameters(queryParams[orderByKey], validationContext);
-				
-				if (errors?.Count() > 0)
-				{
-					foreach (var error in errors)
-					{
-						bindingContext.ModelState.AddModelError(error.ErrorMessage, String.Join(",", error.MemberNames));
-					}
+			var searchKey = queryParams.AllKeys.Where(x => Regex.IsMatch(x, "Search", RegexOptions.IgnoreCase)).FirstOrDefault();
 
-					bindingContext.Result = ModelBindingResult.Failed();
-					return Task.CompletedTask;
-				}
-			}
-
+			paramsInstance.ApplyQueryParameters(queryParams[orderByKey], queryParams[searchKey]);
+			
 			bindingContext.Result = ModelBindingResult.Success(paramsInstance);
 
 			return Task.CompletedTask;

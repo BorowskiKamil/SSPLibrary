@@ -10,7 +10,9 @@ namespace SSPLibrary.Models
 
 		string ActionName { get; set; }
 
-		IEnumerable<ValidationResult> ApplyQueryParameters(string sortParams, ValidationContext validationContext);
+		void ApplyQueryParameters(
+				string sortParams,
+				string searchOptions);
 		
 	}
 }
