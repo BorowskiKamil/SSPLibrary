@@ -11,7 +11,10 @@ namespace SSPLibrary.Demo.Repositories
 
 		public PagedResults<TodoTask> GetTasks(QueryParameters<TodoTask> queryParameters)
 		{
-			var entities = GenerateFakeTasks().AsQueryable().ApplyPaging(queryParameters);
+			var entities = GenerateFakeTasks()
+								.AsQueryable()
+								.ApplySorting(queryParameters)
+								.ApplyPaging(queryParameters);
 
 			return entities;
 		}

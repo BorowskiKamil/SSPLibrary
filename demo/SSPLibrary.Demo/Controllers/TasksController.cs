@@ -21,6 +21,8 @@ namespace SSPLibrary.Demo.Controllers
 		[HttpGet(Name = nameof(GetAllTasks))]
         public IActionResult GetAllTasks(QueryParameters<TodoTask> queryParameters)
         {
+			if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var result = _repository.GetTasks(queryParameters);
 			return Ok(result.ToPagedCollection(queryParameters));
         }
