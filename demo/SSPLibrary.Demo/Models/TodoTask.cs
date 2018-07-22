@@ -7,6 +7,7 @@ namespace SSPLibrary.Demo.Models
 		[Sortable(Default = true, WhenDefaultIsDescending = true)]
 		public int Id { get; set; }
 
+		[Searchable]
 		public string Name { get; set; }
 
 		public bool IsDone { get; set; }

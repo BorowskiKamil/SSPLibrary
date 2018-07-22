@@ -8,24 +8,29 @@ namespace SSPLibrary.Models
 {
     public class SearchOptions<T> : IValidatableObject
     {
-        public string[] Search { get; set; }
+        public IEnumerable<SearchTerm> SearchTerms { get; set; }
 
-        public IEnumerable<ValidationResult> ParseQuery(string parameter, ValidationContext validationContext)
+        public void ParseQuery(string parameter)
         {
-            string[] order = parameter.Split(',');
-            Search = order.Select(x => 
-            {
-                return x.Trim();
-            }).ToArray();
-
-            return Validate(validationContext);
+            var processor = new SearchOptionsProcessor<T>(SearchTerms);
+            SearchTerms = processor.ParseAllTerms(parameter);
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var processor = new SearchOptionsProcessor<T>();
+            if (SearchTerms == null) yield break;
 
-            return null;
+            var processor = new SearchOptionsProcessor<T>(SearchTerms);
+
+            var validTerms = processor.GetValidTerms().Select(x => x.Name);
+            var invalidTerms = SearchTerms.Select(x => x.Name).Except(validTerms, StringComparer.OrdinalIgnoreCase);
+
+            foreach (var term in invalidTerms)
+            {
+                yield return new ValidationResult(
+                    $"Invalid search term '{term}'.",
+                    new[] { nameof(SearchTerms) });
+            }
         }
     }
 }

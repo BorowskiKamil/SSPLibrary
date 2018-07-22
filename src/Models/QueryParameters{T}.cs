@@ -10,14 +10,14 @@ namespace SSPLibrary.Models
 
 		public PagingParameters PagingParameters { get; set; } = new PagingParameters();
 
-		// public SearchOptions<T> SearchOptions { get; set; } = new SearchOptions<T>();
+		public SearchOptions<T> SearchOptions { get; set; } = new SearchOptions<T>();
 
 		public string ActionName { get; set; }
 
 		public void ApplyQueryParameters(string sortParams, string searchOptions)
 		{
 			SortOptions.ParseQuery(sortParams);
-			// if(searchOptions != null) SearchOptions.ParseQuery(searchOptions, validationContext);
+			SearchOptions.ParseQuery(searchOptions);
 		}
 	}
 }
