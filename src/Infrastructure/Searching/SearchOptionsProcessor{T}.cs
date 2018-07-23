@@ -65,12 +65,18 @@ namespace SSPLibrary.Infrastructure
                     continue;
                 }
 
+                var value = string.Join(separator, termSplited.Skip(1)).Trim();
+                var values = value.Split('|').Select(x => 
+                {
+                    return x.Trim();
+                }).ToArray();
+
 				yield return new SearchTerm
                 {
                     ValidSyntax = true,
                     Name = termSplited[0].Trim(),
                     Operator = separator,
-                    Value = string.Join(separator, termSplited.Skip(1)).Trim()
+                    Value = values
                 };
             }
         }
@@ -163,16 +169,28 @@ namespace SSPLibrary.Infrastructure
             {
                 var propertyInfo = ExpressionHelper
                     .GetPropertyInfo<T>(term.Name);
+
                 var obj = ExpressionHelper.Parameter<T>();
 
-                var left = ExpressionHelper.GetPropertyExpression(obj, propertyInfo);
-                var right = term.ExpressionProvider.GetValue(term.Value, propertyInfo.PropertyType);
+                Expression expression = null;
 
-                var comparisionExpression = term.ExpressionProvider
-                                                .GetComparison(left, term.Operator, right);
+                foreach (var value in term.Value)
+                {
+                    var left = ExpressionHelper.GetPropertyExpression(obj, propertyInfo);
+                    var right = term.ExpressionProvider.GetValue(value, propertyInfo.PropertyType);
 
-                var lambdaExpression = ExpressionHelper.GetLambda<T, bool>(obj, comparisionExpression);
+                    if (expression == null)
+                    {
+                        expression = term.ExpressionProvider.GetComparison(left, term.Operator, right);
+                    }
+                    else
+                    {
+                        var extendedExpresson = term.ExpressionProvider.GetComparison(left, term.Operator, right);
+                        expression = Expression.Or(expression, extendedExpresson);
+                    }
+                }
 
+                var lambdaExpression = ExpressionHelper.GetLambda<T, bool>(obj, expression);
                 modifiedQuery = ExpressionHelper.CallWhere(modifiedQuery, lambdaExpression);
             }
 
