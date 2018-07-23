@@ -109,7 +109,13 @@ namespace SSPLibrary.Infrastructure
                 return eProvider;
 
             if (type.IsNumericType())
-                return new NumberSearchExpressionProvider();
+                return new ComparableSearchExpressionProvider();
+
+            if (type == typeof(DateTime))
+                return new DateTimeSearchExpressionProvider();
+                
+            if (type == typeof(DateTimeOffset))
+                return new DateTimeOffsetSearchExpressionProvider();
 
             return new DefaultSearchExpressionProvider();
         }

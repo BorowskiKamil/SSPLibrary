@@ -15,5 +15,8 @@ namespace SSPLibrary.Demo.Models
 
 		[Searchable]
 		public Int16 Value { get; set; }
+
+		[Searchable]
+		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 	}
 }

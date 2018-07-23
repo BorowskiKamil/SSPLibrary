@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace SSPLibrary.Infrastructure
 {
-    public class NumberSearchExpressionProvider : DefaultSearchExpressionProvider
+    public class ComparableSearchExpressionProvider : DefaultSearchExpressionProvider
     {
 
         public override Expression GetComparison(MemberExpression left, string op, ConstantExpression right)
