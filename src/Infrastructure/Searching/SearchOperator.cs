@@ -17,6 +17,10 @@ namespace SSPLibrary.Infrastructure
 		public const string LessThan = "<";
 		public const string GreaterThanOrEqual = ">=";
 		public const string LessThanOrEqual = "<=";
+		public const string StartsWith = "^";
+		public const string StartsWithCaseInsensitive = "^*";
+		public const string EndsWith = "$";
+		public const string EndsWithCaseInsensitive = "$*";
 
 
 		public static Dictionary<string, string> GetAllOperators()

@@ -39,6 +39,42 @@ namespace SSPLibrary.Infrastructure
 
 					return Expression.NotEqual(call, Expression.Constant(true));
 				}
+				case SearchOperator.StartsWith:
+				{
+					var call = Expression.Call(left, 
+						typeof(string).GetMethod("StartsWith", new[] { typeof(string), typeof(StringComparison) }), 
+						right, 
+						Expression.Constant(StringComparison.Ordinal));
+
+					return Expression.Equal(call, Expression.Constant(true));
+				}
+				case SearchOperator.StartsWithCaseInsensitive:
+				{
+					var call = Expression.Call(left, 
+						typeof(string).GetMethod("StartsWith", new[] { typeof(string), typeof(StringComparison) }), 
+						right, 
+						Expression.Constant(StringComparison.OrdinalIgnoreCase));
+
+					return Expression.Equal(call, Expression.Constant(true));
+				}
+				case SearchOperator.EndsWith:
+				{
+					var call = Expression.Call(left, 
+						typeof(string).GetMethod("EndsWith", new[] { typeof(string), typeof(StringComparison) }), 
+						right, 
+						Expression.Constant(StringComparison.Ordinal));
+
+					return Expression.Equal(call, Expression.Constant(true));
+				}
+				case SearchOperator.EndsWithCaseInsensitive:
+				{
+					var call = Expression.Call(left, 
+						typeof(string).GetMethod("EndsWith", new[] { typeof(string), typeof(StringComparison) }), 
+						right, 
+						Expression.Constant(StringComparison.OrdinalIgnoreCase));
+
+					return Expression.Equal(call, Expression.Constant(true));
+				}
                 default: 
 					return base.GetComparison(left, op, right);
             }
