@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq.Expressions;
 
 namespace SSPLibrary.Infrastructure
@@ -19,6 +20,12 @@ namespace SSPLibrary.Infrastructure
         }
 
         public virtual ConstantExpression GetValue(string input, Type propertyType)
-            => Expression.Constant(input);
+        {
+            TypeConverter converter = TypeDescriptor.GetConverter(propertyType);
+            var result = converter.ConvertFromString(input);
+
+            return Expression.Constant(result);
+        }
+            //=> Expression.Constant(input);
     }
 }

@@ -11,6 +11,7 @@ namespace SSPLibrary.Demo.Models
 		[Searchable]
 		public string Name { get; set; }
 
+		[Searchable]
 		public bool IsDone { get; set; }
 
 		[Searchable]
