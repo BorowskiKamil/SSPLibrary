@@ -13,6 +13,7 @@ namespace SSPLibrary.Demo.Repositories
 		{
 			var entities = GenerateFakeTasks()
 								.AsQueryable()
+								.ApplySearching(queryParameters)
 								.ApplySorting(queryParameters)
 								.ApplyPaging(queryParameters);
 
@@ -29,7 +30,8 @@ namespace SSPLibrary.Demo.Repositories
 				{
 					Id = i,
 					Name = $"Task {i}",
-					IsDone = rnd.Next() % 2 == 0
+					IsDone = rnd.Next() % 2 == 0,
+					Value = Convert.ToInt16(rnd.Next(1, 500))
 				};
 			}
 		}

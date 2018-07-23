@@ -6,9 +6,7 @@ namespace SSPLibrary.Infrastructure
 {
     public interface ISearchExpressionProvider
     {
-        IEnumerable<string> GetOperators();
-
-        ConstantExpression GetValue(string input);
+        ConstantExpression GetValue(string input, Type propertyType = null);
 
         Expression GetComparison(MemberExpression left, string op, ConstantExpression right);
     }

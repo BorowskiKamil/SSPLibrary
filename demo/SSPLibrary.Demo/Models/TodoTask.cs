@@ -1,3 +1,4 @@
+using System;
 using SSPLibrary.Infrastructure;
 
 namespace SSPLibrary.Demo.Models
@@ -11,5 +12,8 @@ namespace SSPLibrary.Demo.Models
 		public string Name { get; set; }
 
 		public bool IsDone { get; set; }
+
+		[Searchable]
+		public Int16 Value { get; set; }
 	}
 }

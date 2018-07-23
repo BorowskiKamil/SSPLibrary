@@ -68,9 +68,9 @@ namespace SSPLibrary.Infrastructure
 				yield return new SearchTerm
                 {
                     ValidSyntax = true,
-                    Name = termSplited[0],
+                    Name = termSplited[0].Trim(),
                     Operator = separator,
-                    Value = string.Join(separator, termSplited.Skip(1))
+                    Value = string.Join(separator, termSplited.Skip(1)).Substring(separator.Length).Trim()
                 };
             }
         }
@@ -103,14 +103,25 @@ namespace SSPLibrary.Infrastructure
             }
         }
 
+        private static ISearchExpressionProvider GetDefaultExpressionProvider(Type type, ISearchExpressionProvider eProvider)
+        {
+            if (eProvider != null)
+                return eProvider;
+
+            if (type.IsNumericType())
+                return new NumberSearchExpressionProvider();
+
+            return new DefaultSearchExpressionProvider();
+        }
+
 		private static IEnumerable<SearchTerm> GetTermsFromModel()
             => typeof(T).GetTypeInfo()
                 .DeclaredProperties
                 .Where(p => p.GetCustomAttributes<SearchableAttribute>().Any())
                 .Select(p => new SearchTerm 
-                { 
+                {
                     Name = p.Name,
-                    ExpressionProvider = p.GetCustomAttribute<SearchableAttribute>().ExpressionProvider
+                    ExpressionProvider = GetDefaultExpressionProvider(p.PropertyType, p.GetCustomAttribute<SearchableAttribute>().ExpressionProvider),
                 });
 
 
@@ -131,6 +142,33 @@ namespace SSPLibrary.Infrastructure
 
 			return null;
 		}
+
+        public IQueryable<T> Apply(IQueryable<T> query)
+        {
+            var terms = GetValidTerms().ToArray();
+            if (!terms.Any()) return query;
+
+            var modifiedQuery = query;
+
+            foreach (var term in terms)
+            {
+                var propertyInfo = ExpressionHelper
+                    .GetPropertyInfo<T>(term.Name);
+                var obj = ExpressionHelper.Parameter<T>();
+
+                var left = ExpressionHelper.GetPropertyExpression(obj, propertyInfo);
+                var right = term.ExpressionProvider.GetValue(term.Value, propertyInfo.PropertyType);
+
+                var comparisionExpression = term.ExpressionProvider
+                                                .GetComparison(left, term.Operator, right);
+
+                var lambdaExpression = ExpressionHelper.GetLambda<T, bool>(obj, comparisionExpression);
+
+                modifiedQuery = ExpressionHelper.CallWhere(modifiedQuery, lambdaExpression);
+            }
+
+            return modifiedQuery;
+        }
 
 
 	}

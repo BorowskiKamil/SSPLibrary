@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace SSPLibrary.Infrastructure
 {
@@ -7,8 +8,6 @@ namespace SSPLibrary.Infrastructure
     {
 
         public ISearchExpressionProvider ExpressionProvider { get; set; }
-            // = new DefaultSearchExpressionProvider();
-
 
     }
 }

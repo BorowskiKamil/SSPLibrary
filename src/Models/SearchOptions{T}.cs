@@ -14,6 +14,11 @@ namespace SSPLibrary.Models
         {
             var processor = new SearchOptionsProcessor<T>(SearchTerms);
             SearchTerms = processor.ParseAllTerms(parameter);
+
+            foreach (var term in SearchTerms)
+            {
+                Console.WriteLine($"TermName: {term.Name} OP: {term.Operator} Value: {term.Value}");
+            }
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

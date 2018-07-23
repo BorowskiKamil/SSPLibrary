@@ -31,6 +31,16 @@ namespace SSPLibrary
 			var processor = new SortOptionsProcessor<T>(queryParams.SortOptions.OrderBy);
 			return processor.Apply(query);
 		}
+
+		public static IQueryable<T> ApplySearching<T>(
+			this IQueryable<T> query,
+			QueryParameters<T> queryParams
+		)
+        {
+			var processor = new SearchOptionsProcessor<T>(queryParams.SearchOptions.SearchTerms);
+			return processor.Apply(query);
+        }
+
 	}
 
 }
