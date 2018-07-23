@@ -8,11 +8,16 @@ namespace SSPLibrary.Infrastructure
 	{
 
 		public const string Equal = "==";
+		public const string EqualCaseInsensitive = "==*";
 		public const string NotEqual = "!=";
+		public const string NotEqualCaseInsensitive = "!=*";
+		public const string Contains = "?";
+		public const string ContainsCaseInsensitive = "?*";
 		public const string GreaterThan = ">";
 		public const string LessThan = "<";
 		public const string GreaterThanOrEqual = ">=";
 		public const string LessThanOrEqual = "<=";
+
 
 		public static Dictionary<string, string> GetAllOperators()
 		{

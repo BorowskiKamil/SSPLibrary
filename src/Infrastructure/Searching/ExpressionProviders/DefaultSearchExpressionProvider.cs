@@ -26,6 +26,5 @@ namespace SSPLibrary.Infrastructure
 
             return Expression.Constant(result);
         }
-            //=> Expression.Constant(input);
     }
 }

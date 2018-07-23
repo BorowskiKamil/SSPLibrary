@@ -33,13 +33,13 @@ namespace SSPLibrary.Infrastructure
                 return x.Trim();
             }).ToArray();
 
-			var operators = SearchOperator.GetAllOperators();
+			var operators = SearchOperator.GetAllOperators().OrderByDescending(x => x.Value.Length).Select(x => x.Value).ToArray();
 
             foreach (var term in arrayQuery)
             {
                 if (string.IsNullOrEmpty(term)) continue;
 
-				string separator = FindMatchingOperator(term, operators.Values);
+				string separator = FindMatchingOperator(term, operators);
 
 				if (separator == null)
 				{
@@ -52,7 +52,7 @@ namespace SSPLibrary.Infrastructure
 					continue;
 				}
 
-				var termSplited = term.Split(separator.ToCharArray());
+				var termSplited = term.Split(new[] { separator }, StringSplitOptions.None);
 
 				if (termSplited.Length < 2)
                 {
@@ -70,7 +70,7 @@ namespace SSPLibrary.Infrastructure
                     ValidSyntax = true,
                     Name = termSplited[0].Trim(),
                     Operator = separator,
-                    Value = string.Join(separator, termSplited.Skip(1)).Substring(separator.Length).Trim()
+                    Value = string.Join(separator, termSplited.Skip(1)).Trim()
                 };
             }
         }
@@ -113,9 +113,12 @@ namespace SSPLibrary.Infrastructure
 
             if (type == typeof(DateTime))
                 return new DateTimeSearchExpressionProvider();
-                
+
             if (type == typeof(DateTimeOffset))
                 return new DateTimeOffsetSearchExpressionProvider();
+
+            if (type == typeof(string))
+                return new StringSearchExpressionProvider();
 
             return new DefaultSearchExpressionProvider();
         }
@@ -137,7 +140,7 @@ namespace SSPLibrary.Infrastructure
 			{
 				if (!term.Contains(op)) continue;
 
-				var termSplited = term.Split(op.ToCharArray());
+				var termSplited = term.Split(new[] { op }, StringSplitOptions.None);
 
 				if (termSplited.Count() < 2) continue;
 
