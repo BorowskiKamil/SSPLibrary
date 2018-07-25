@@ -4,3 +4,5 @@ src/bin/
 src/obj/
 demo/SSPLibrary.Demo/bin/
 demo/SSPLibrary.Demo/obj/
+tests/SSPLibrary.Tests/obj/
+tests/SSPLibrary.Tests/bin/
