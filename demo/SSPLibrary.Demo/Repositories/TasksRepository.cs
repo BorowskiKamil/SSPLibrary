@@ -15,7 +15,7 @@ namespace SSPLibrary.Demo.Repositories
 								.AsQueryable()
 								.ApplySearching(queryParameters)
 								.ApplySorting(queryParameters)
-								.ApplyPaging(queryParameters);
+								.ToPagedResults(queryParameters);
 
 			return entities;
 		}

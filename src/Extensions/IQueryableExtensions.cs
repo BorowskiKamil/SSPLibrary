@@ -6,7 +6,7 @@ namespace SSPLibrary
 {
 	public static class IQueryableExtensions
 	{
-		public static PagedResults<T> ApplyPaging<T>(
+		public static PagedResults<T> ToPagedResults<T>(
 			this IQueryable<T> source, 
             QueryParameters<T> queryParams)
 		{

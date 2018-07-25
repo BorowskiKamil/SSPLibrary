@@ -20,10 +20,18 @@ namespace SSPLibrary.Tests
         [Fact]
         public void ApplyPaging()
         {
-            var paged = _fixture.Repository.GetTasks().ApplyPaging(_fixture.QueryParameters);
-
+            var paged = _fixture.Repository.GetTasks().ToPagedResults(_fixture.QueryParameters);
             Assert.IsType<PagedResults<TodoTask>>(paged);
+
             Assert.True(paged.Items.Count() <= _fixture.QueryParameters.PagingParameters.Limit);
+
+            var pagedCollection = paged.ToPagedCollection(_fixture.QueryParameters);
+            Assert.IsType<PagedCollection<TodoTask>>(pagedCollection);
+
+            Assert.NotNull(pagedCollection.First);
+            Assert.NotNull(pagedCollection.Next);
+            Assert.NotNull(pagedCollection.Last);
+            Assert.NotNull(pagedCollection.Previous);   
         }
 
         [Fact]
