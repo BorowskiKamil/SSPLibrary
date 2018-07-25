@@ -20,8 +20,6 @@ namespace SSPLibrary.Models
             {
                 return x.Trim();
             }).ToArray();
-
-            // return Validate(validationContext);
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
