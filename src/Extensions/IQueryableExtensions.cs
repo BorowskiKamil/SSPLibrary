@@ -28,7 +28,7 @@ namespace SSPLibrary
 			this IQueryable<T> query,
 			QueryParameters<T> queryParams)
 		{
-			var processor = new SortOptionsProcessor<T>(queryParams.SortOptions.OrderBy);
+			var processor = new SortOptionsProcessor<T>(queryParams.SortOptions.SortTerms);
 			return processor.Apply(query);
 		}
 

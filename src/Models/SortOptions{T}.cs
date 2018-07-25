@@ -8,33 +8,29 @@ namespace SSPLibrary.Models
 {
     public class SortOptions<T> : IValidatableObject
     {
-
-        public string[] OrderBy { get; set; }
+        public IEnumerable<SortTerm> SortTerms { get; set; }
 
         public void ParseQuery(string parameter)
         {
             if (parameter == null) return;
 
-            string[] order = parameter.Split(',');
-            OrderBy = order.Select(x => 
-            {
-                return x.Trim();
-            }).ToArray();
+            var processor = new SortOptionsProcessor<T>(SortTerms);
+            SortTerms = processor.ParseAllTerms(parameter);
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var processor = new SortOptionsProcessor<T>(OrderBy);
+            var processor = new SortOptionsProcessor<T>(SortTerms);
 
             var validTerms = processor.GetValidTerms().Select(x => x.Name);
 
-            var invalidTerms = processor.GetAllTerms().Select(x => x.Name).Except(validTerms, StringComparer.OrdinalIgnoreCase);
+            var invalidTerms = SortTerms.Select(x => x.Name).Except(validTerms, StringComparer.OrdinalIgnoreCase);
 
             foreach (var term in invalidTerms)
             {
                 yield return new ValidationResult(
                     $"Invalid sort term '{term}'.",
-                    new[] { nameof(OrderBy) }
+                    new[] { nameof(SortTerms) }
                 );
             }
         }

@@ -33,7 +33,7 @@ namespace SSPLibrary.Tests
 
             _fixture.QueryParameters.ApplyQueryParameters(sortQuery, null);
 
-            Assert.Equal(2, _fixture.QueryParameters.SortOptions.OrderBy.Count());
+            Assert.Equal(2, _fixture.QueryParameters.SortOptions.SortTerms.Count());
 
             var sorted = _fixture.Repository.GetTasks().ApplySorting(_fixture.QueryParameters).ToArray();
 

@@ -8,18 +8,30 @@ namespace SSPLibrary.Infrastructure
     public class SortOptionsProcessor<T>
     {
 
-        private readonly string[] _orderBy;
+		private IEnumerable<SortTerm> _sortTerms;
 
-        public SortOptionsProcessor(string[] orderBy)
+        public SortOptionsProcessor(IEnumerable<SortTerm> sortTerms)
         {
-            _orderBy = orderBy;    
+            _sortTerms = sortTerms;    
         }
 
-        public IEnumerable<SortTerm> GetAllTerms()
-        {
-            if (_orderBy == null) yield break;
+        public IEnumerable<SortTerm> ParseAllTerms(string sortQuery)
+		{
+			_sortTerms = GetAllTerms(sortQuery);
+            return _sortTerms;
+		}
 
-            foreach (var term in _orderBy)
+        public IEnumerable<SortTerm> GetAllTerms(string sortQuery)
+        {
+            if (sortQuery == null) yield break;
+
+            string[] order = sortQuery.Split(',');
+            var arrayQuery = order.Select(x => 
+            {
+                return x.Trim();
+            }).ToArray();
+
+            foreach (var term in arrayQuery)
             {
                 if (string.IsNullOrEmpty(term)) continue;
 
@@ -43,7 +55,7 @@ namespace SSPLibrary.Infrastructure
 
         public IEnumerable<SortTerm> GetValidTerms()
         {
-            var queryTerms = GetAllTerms().ToArray();
+            var queryTerms = _sortTerms.ToArray();
             if (!queryTerms.Any()) yield break;
 
             var declaredTerms = GetTermsFromModel();
