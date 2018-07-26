@@ -1,4 +1,4 @@
-# SSPLibrary (which is Sorting, Searching, Paging Library)
+# SSPLibrary (stands for Sorting, Searching, Paging Library)
 
 This project contains a library which provide a set of methods to sort, filter and add paging to API's results. 
 
