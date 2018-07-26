@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSPLibrary", "src\SSPLibrary.csproj", "{AC7F55F6-1B6E-4B0D-9968-8BC5422348AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSPLibrary", "src\SSPLibrary\SSPLibrary.csproj", "{AC7F55F6-1B6E-4B0D-9968-8BC5422348AE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{591C31D9-A1B8-44D2-9698-562770EE39A9}"
 EndProject

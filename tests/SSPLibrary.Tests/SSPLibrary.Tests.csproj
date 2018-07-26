@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SSPLibrary.csproj" />
+    <ProjectReference Include="..\..\src\SSPLibrary\SSPLibrary.csproj" />
   </ItemGroup>
 
 </Project>

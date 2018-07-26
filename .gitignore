@@ -1,7 +1,7 @@
 .vscode/
 .vs/
-src/bin/
-src/obj/
+src/SSPLibrary/bin/
+src/SSPLibrary/obj/
 demo/SSPLibrary.Demo/bin/
 demo/SSPLibrary.Demo/obj/
 tests/SSPLibrary.Tests/obj/

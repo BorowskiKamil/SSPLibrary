@@ -7,12 +7,12 @@ using System.Linq;
 namespace SSPLibrary.Tests
 {
 
-    public class ExpressionBuilderTests : IClassFixture<ExpressionBuilderFixture>
+    public class ExpressionBuilderShould : IClassFixture<ExpressionBuilderFixture>
     {
 
         private readonly ExpressionBuilderFixture _fixture;
 
-        public ExpressionBuilderTests(ExpressionBuilderFixture fixture)
+        public ExpressionBuilderShould(ExpressionBuilderFixture fixture)
         {
             _fixture = fixture;
         }
