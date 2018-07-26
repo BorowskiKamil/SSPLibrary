@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+      <Authors>Kamil Borowski</Authors>
+    <Copyright>Copyright @2018 Kamil Borowski</Copyright>
+    <Description>A extension for SSPLibrary that provides support for EntityFrameworkCore.</Description>
+    <Version>1.0</Version>
+    <AssemblyName>SSPLibrary.Extensions.Microsoft.EntityFrameworkCore</AssemblyName>
+    <PackageId>SSPLibrary.Extensions.Microsoft.EntityFrameworkCore</PackageId>
+    <PackageTags>ASP.NET Core;paging;sorting;filtering;entity framework core;</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SSPLibrary\SSPLibrary.csproj" />
+  </ItemGroup>
 
 </Project>

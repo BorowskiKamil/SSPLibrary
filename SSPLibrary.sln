@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{A6BD98C0-B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSPLibrary.Demo", "demo\SSPLibrary.Demo\SSPLibrary.Demo.csproj", "{84124C7A-3A7F-4080-9C9E-B2EF04473D53}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{12F6F190-63D2-4435-8CC6-F2835AC8200C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSPLibrary.Extensions.Microsoft.EntityFrameworkCore", "src\SSPLibrary.Extensions.Microsoft.EntityFrameworkCore\SSPLibrary.Extensions.Microsoft.EntityFrameworkCore.csproj", "{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,9 +66,22 @@ Global
 		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|x64.Build.0 = Release|Any CPU
 		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|x86.ActiveCfg = Release|Any CPU
 		{84124C7A-3A7F-4080-9C9E-B2EF04473D53}.Release|x86.Build.0 = Release|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Debug|x64.Build.0 = Debug|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Debug|x86.Build.0 = Debug|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Release|x64.ActiveCfg = Release|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Release|x64.Build.0 = Release|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Release|x86.ActiveCfg = Release|Any CPU
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9D3CF54F-3052-49D4-82C0-9376C031903B} = {591C31D9-A1B8-44D2-9698-562770EE39A9}
 		{84124C7A-3A7F-4080-9C9E-B2EF04473D53} = {A6BD98C0-B69E-4EF1-8B32-CA75FDCEFF60}
+		{7DCCBCB0-0825-44C3-823F-C4D8ED4CFB1B} = {12F6F190-63D2-4435-8CC6-F2835AC8200C}
 	EndGlobalSection
 EndGlobal

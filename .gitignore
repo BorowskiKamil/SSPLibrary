@@ -2,6 +2,8 @@
 .vs/
 src/SSPLibrary/bin/
 src/SSPLibrary/obj/
+src/SSPLibrary.Extensions.Microsoft.EntityFrameworkCore/bin/
+src/SSPLibrary.Extensions.Microsoft.EntityFrameworkCore/obj/
 demo/SSPLibrary.Demo/bin/
 demo/SSPLibrary.Demo/obj/
 tests/SSPLibrary.Tests/obj/
