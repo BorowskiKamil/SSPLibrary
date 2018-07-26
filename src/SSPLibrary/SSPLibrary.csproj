@@ -9,6 +9,10 @@
     <AssemblyName>SSPLibrary</AssemblyName>
     <PackageId>SSPLibrary</PackageId>
     <PackageTags>ASP.NET Core;paging;sorting;filtering;</PackageTags>
+    <PackageLicenseUrl>https://github.com/BorowskiKamil/SSPLibrary/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/BorowskiKamil/SSPLibrary</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BorowskiKamil/SSPLibrary.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 
