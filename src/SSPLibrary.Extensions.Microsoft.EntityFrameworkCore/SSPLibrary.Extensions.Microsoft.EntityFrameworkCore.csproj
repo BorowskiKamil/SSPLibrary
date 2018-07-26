@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SSPLibrary\SSPLibrary.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,17 @@ namespace Microsoft.EntityFrameworkCore
             QueryParameters<T> queryParams,
             CancellationToken cancellationToken = default(CancellationToken))
 		{
-			throw new NotImplementedException();
+			var totalSize = await source.CountAsync(cancellationToken);
+
+			var result = await source
+				.Skip(queryParams.PagingParameters.Offset.Value)
+				.Take(queryParams.PagingParameters.Limit.Value).ToArrayAsync(cancellationToken);
+			
+			return new PagedResults<T>
+			{
+				TotalSize = totalSize,
+				Items = result
+			};
 		}
     }
 }
