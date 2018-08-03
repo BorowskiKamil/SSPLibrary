@@ -8,7 +8,7 @@
     <Version>1.0</Version>
     <AssemblyName>SSPLibrary.Extensions.Microsoft.EntityFrameworkCore</AssemblyName>
     <PackageId>SSPLibrary.Extensions.Microsoft.EntityFrameworkCore</PackageId>
-    <PackageTags>ASP.NET Core;paging;sorting;filtering;entity framework core;</PackageTags>
+    <PackageTags>SSPLibrary;ASP.NET Core;paging;sorting;filtering;entity framework core;</PackageTags>
     <PackageLicenseUrl>https://github.com/BorowskiKamil/SSPLibrary/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/BorowskiKamil/SSPLibrary</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BorowskiKamil/SSPLibrary.git</RepositoryUrl>

@@ -15,7 +15,7 @@ namespace SSPLibrary.Demo.Models
 		public bool IsDone { get; set; }
 
 		[Searchable]
-		public Int16 Value { get; set; }
+		public int Value { get; set; }
 
 		[Searchable]
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

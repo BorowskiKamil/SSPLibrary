@@ -78,6 +78,8 @@ namespace SSPLibrary.Infrastructure
 
         public IQueryable<T> Apply(IQueryable<T> query)
         {
+            if (_sortTerms == null) return query;
+
             var terms = GetValidTerms().ToArray();
 
             if (!terms.Any())

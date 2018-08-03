@@ -20,6 +20,8 @@ namespace SSPLibrary.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            if (SortTerms == null) yield break;
+
             var processor = new SortOptionsProcessor<T>(SortTerms);
 
             var validTerms = processor.GetValidTerms().Select(x => x.Name);
