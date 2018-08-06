@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using SSPLibrary.Demo.Models;
 using SSPLibrary.Models;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SSPLibrary.Demo.Repositories
 {
 	public class TasksRepository : ITasksRepository
 	{
 
-		public PagedResults<TodoTask> GetTasks(QueryParameters<TodoTask> queryParameters)
+		public Task<PagedResults<TodoTask>> GetTasks(QueryParameters<TodoTask> queryParameters, CancellationToken ct)
 		{
 			var entities = GenerateFakeTasks()
 								.AsQueryable()
@@ -17,7 +19,7 @@ namespace SSPLibrary.Demo.Repositories
 								.ApplySorting(queryParameters)
 								.ToPagedResults(queryParameters);
 
-			return entities;
+			return Task.FromResult(entities);
 		}
 
 		private IEnumerable<TodoTask> GenerateFakeTasks()

@@ -15,7 +15,7 @@ namespace SSPLibrary.Infrastructure
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (context.Metadata.ModelType.GetGenericTypeDefinition() == typeof(QueryParameters<>))
+            if (context.Metadata.ModelType.IsGenericType && context.Metadata.ModelType.GetGenericTypeDefinition() == typeof(QueryParameters<>))
             {
 				return new BinderTypeModelBinder(typeof(QueryParametersModelBinder));
             }

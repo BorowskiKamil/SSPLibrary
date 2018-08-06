@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SSPLibrary.Demo.Models;
 using SSPLibrary.Demo.Repositories;
@@ -19,11 +21,11 @@ namespace SSPLibrary.Demo.Controllers
 		}
 
 		[HttpGet(Name = nameof(GetAllTasks))]
-        public IActionResult GetAllTasks(QueryParameters<TodoTask> queryParameters)
+        public async Task<IActionResult> GetAllTasks(QueryParameters<TodoTask> queryParameters, CancellationToken ct)
         {
 			if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var result = _repository.GetTasks(queryParameters);
+            var result = await _repository.GetTasks(queryParameters, ct);
 			return Ok(result.ToPagedCollection(queryParameters));
         }
 	}
