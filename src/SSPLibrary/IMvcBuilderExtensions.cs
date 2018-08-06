@@ -11,7 +11,7 @@ namespace SSPLibrary
 
         public static IMvcBuilder AddSSP(this IMvcBuilder mvcBuilder, Action<SSPOptions> optionsBuilder = null)
         {
-            optionsBuilder.Invoke(SSPOptions.Instance);
+            if (optionsBuilder != null) optionsBuilder.Invoke(SSPOptions.Instance);
 
             mvcBuilder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
