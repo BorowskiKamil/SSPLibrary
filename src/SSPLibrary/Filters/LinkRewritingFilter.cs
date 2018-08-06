@@ -69,7 +69,7 @@ namespace SSPLibrary.Filters
             var arrayProperties = allProperties.Where(p => p.PropertyType.IsArray);
             RewriteLinksInArrays(arrayProperties, model, rewriter);
 
-            var objectProperties = allProperties.Except(linkProperties).Except(arrayProperties);
+            var objectProperties = allProperties.Except(linkProperties).Except(arrayProperties).Where(p => p.GetIndexParameters().Length == 0);
             RewriteLinksInNestedObjects(objectProperties, model, rewriter);
         }
 
