@@ -18,15 +18,15 @@ namespace SSPLibrary.Tests
         }
 
         [Fact]
-        public void ApplyPaging()
+        public void Should_Apply_Paging_And_Return_Data()
         {
             var paged = _fixture.Repository.GetTasks().ToPagedResults(_fixture.QueryParameters);
-            Assert.IsType<PagedResults<TodoTask>>(paged);
+            Assert.IsType<PagedResults<TodoTaskEntity>>(paged);
 
             Assert.True(paged.Items.Count() <= _fixture.QueryParameters.PagingParameters.Limit);
 
             var pagedCollection = paged.ToPagedCollection(_fixture.QueryParameters);
-            Assert.IsType<PagedCollection<TodoTask>>(pagedCollection);
+            Assert.IsType<PagedCollection<TodoTaskEntity>>(pagedCollection);
 
             Assert.NotNull(pagedCollection.First);
             Assert.NotNull(pagedCollection.Next);
@@ -35,7 +35,7 @@ namespace SSPLibrary.Tests
         }
 
         [Fact]
-        public void ApplySorting()
+        public void Should_Apply_Sorting_And_Return_Data()
         {
             var sortQuery = "-Id,IsDone";
 
@@ -49,7 +49,7 @@ namespace SSPLibrary.Tests
         }
 
         [Fact]
-        public void ApplySearching()
+        public void Should_Apply_Searching_And_Return_Data()
         {
             var searchQuery = "Name==Task 10|Task 21";
 

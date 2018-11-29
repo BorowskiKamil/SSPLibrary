@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace SSPLibrary.Infrastructure
 {
-	public class SearchOptionsProcessor<T>
+	public class SearchOptionsProcessor<TModel>
 	{
 	
 		private IEnumerable<SearchTerm> _searchTerms;
@@ -130,7 +130,7 @@ namespace SSPLibrary.Infrastructure
         }
 
 		private static IEnumerable<SearchTerm> GetTermsFromModel()
-            => typeof(T).GetTypeInfo()
+            => typeof(TModel).GetTypeInfo()
                 .DeclaredProperties
                 .Where(p => p.GetCustomAttributes<SearchableAttribute>().Any())
                 .Select(p => new SearchTerm 
@@ -158,7 +158,12 @@ namespace SSPLibrary.Infrastructure
 			return null;
 		}
 
-        public IQueryable<T> Apply(IQueryable<T> query)
+        public IQueryable<TModel> Apply(IQueryable<TModel> query)
+        {
+            return Apply<TModel>(query);
+        }
+
+        public IQueryable<TEntity> Apply<TEntity>(IQueryable<TEntity> query)
         {
             var terms = GetValidTerms().ToArray();
             if (!terms.Any()) return query;
@@ -168,9 +173,9 @@ namespace SSPLibrary.Infrastructure
             foreach (var term in terms)
             {
                 var propertyInfo = ExpressionHelper
-                    .GetPropertyInfo<T>(term.Name);
+                    .GetPropertyInfo<TEntity>(term.Name);
 
-                var obj = ExpressionHelper.Parameter<T>();
+                var obj = ExpressionHelper.Parameter<TEntity>();
 
                 Expression expression = null;
 
@@ -190,7 +195,7 @@ namespace SSPLibrary.Infrastructure
                     }
                 }
 
-                var lambdaExpression = ExpressionHelper.GetLambda<T, bool>(obj, expression);
+                var lambdaExpression = ExpressionHelper.GetLambda<TEntity, bool>(obj, expression);
                 modifiedQuery = ExpressionHelper.CallWhere(modifiedQuery, lambdaExpression);
             }
 

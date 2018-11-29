@@ -8,7 +8,7 @@ namespace SSPLibrary.Tests
 	public class Repository
 	{
 
-		private readonly IEnumerable<TodoTask> _tasks;
+		private readonly IEnumerable<TodoTaskEntity> _tasks;
 
 		public Repository()
 		{
@@ -16,18 +16,18 @@ namespace SSPLibrary.Tests
 		}
 
 
-		public IQueryable<TodoTask> GetTasks()
+		public IQueryable<TodoTaskEntity> GetTasks()
 		{
 			return _tasks.AsQueryable();
 		}
 
-		private IEnumerable<TodoTask> GenerateTasks()
+		private IEnumerable<TodoTaskEntity> GenerateTasks()
 		{
 			Random rnd = new Random();
 
 			for (int i = 1; i < 50; i++)
 			{
-				yield return new TodoTask
+				yield return new TodoTaskEntity
 				{
 					Id = i,
 					Name = $"Task {i}",

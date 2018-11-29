@@ -8,9 +8,9 @@ namespace SSPLibrary
 {
 	public static class IQueryableExtensions
 	{
-		public static PagedResults<T> ToPagedResults<T>(
-			this IQueryable<T> source, 
-            QueryParameters<T> queryParams)
+		public static PagedResults<TEntity> ToPagedResults<TModel, TEntity>(
+			this IQueryable<TEntity> source, 
+            QueryParameters<TModel> queryParams)
 		{
 			var totalSize = source.Count();
 
@@ -19,7 +19,7 @@ namespace SSPLibrary
 				.Take(queryParams.PagingParameters.Limit.Value)
 				.ToArray();
 
-			return new PagedResults<T>
+			return new PagedResults<TEntity>
 			{
 				TotalSize = totalSize,
 				Items = result
@@ -47,22 +47,24 @@ namespace SSPLibrary
 			};
 		}
 
-		public static IQueryable<T> ApplySorting<T>(
-			this IQueryable<T> query,
-			QueryParameters<T> queryParams)
-		{
-			var processor = new SortOptionsProcessor<T>(queryParams.SortOptions.SortTerms);
-			return processor.Apply(query);
-		}
-
-		public static IQueryable<T> ApplySearching<T>(
-			this IQueryable<T> query,
-			QueryParameters<T> queryParams
+		public static IQueryable<TEntity> ApplySorting<TModel, TEntity>(
+			this IQueryable<TEntity> query,
+			QueryParameters<TModel> queryParams
 		)
         {
-			var processor = new SearchOptionsProcessor<T>(queryParams.SearchOptions.SearchTerms);
-			return processor.Apply(query);
+			var processor = new SortOptionsProcessor<TModel>(queryParams.SortOptions.SortTerms);
+			return processor.Apply<TEntity>(query);
         }
+
+		public static IQueryable<TEntity> ApplySearching<TModel, TEntity>(
+			this IQueryable<TEntity> query,
+			QueryParameters<TModel> queryParams
+		)
+        {
+			var processor = new SearchOptionsProcessor<TModel>(queryParams.SearchOptions.SearchTerms);
+			return processor.Apply<TEntity>(query);
+        }
+
 
 	}
 

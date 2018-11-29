@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SSPLibrary.Infrastructure
 {
-    public class SortOptionsProcessor<T>
+    public class SortOptionsProcessor<TModel>
     {
 
 		private IEnumerable<SortTerm> _sortTerms;
@@ -73,10 +73,14 @@ namespace SSPLibrary.Infrastructure
                     Default = declaredTerm.Default
                 };
             }
-
         }
 
-        public IQueryable<T> Apply(IQueryable<T> query)
+        public IQueryable<TModel> Apply(IQueryable<TModel> query)
+        {
+            return Apply<TModel>(query);
+        }
+
+        public IQueryable<TEntity> Apply<TEntity>(IQueryable<TEntity> query)
         {
             if (_sortTerms == null) return query;
 
@@ -101,12 +105,12 @@ namespace SSPLibrary.Infrastructure
 
             foreach (var term in terms)
             {
-                var propertyInfo = ExpressionHelper.GetPropertyInfo<T>(term.Name);
+                var propertyInfo = ExpressionHelper.GetPropertyInfo<TEntity>(term.Name);
 
-                var obj = ExpressionHelper.Parameter<T>();
+                var obj = ExpressionHelper.Parameter<TEntity>();
 
                 var key = ExpressionHelper.GetPropertyExpression(obj, propertyInfo);
-                var keySelector = ExpressionHelper.GetLambda(typeof(T), propertyInfo.PropertyType, obj, key);
+                var keySelector = ExpressionHelper.GetLambda(typeof(TEntity), propertyInfo.PropertyType, obj, key);
 
                 modifiedQuery = ExpressionHelper.CallOrderByOrThenBy(modifiedQuery, useThenBy, term.Descending, propertyInfo.PropertyType, keySelector);
 
@@ -117,7 +121,7 @@ namespace SSPLibrary.Infrastructure
         }
 
         private static IEnumerable<SortTerm> GetTermsFromModel()
-            => typeof(T).GetTypeInfo()
+            => typeof(TModel).GetTypeInfo()
                         .DeclaredProperties
                         .Where(p => p.GetCustomAttributes<SortableAttribute>().Any())
                         .Select(p => new SortTerm 

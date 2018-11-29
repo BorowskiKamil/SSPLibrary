@@ -7,14 +7,14 @@ namespace SSPLibrary
 {
 	public static class PagedResultsExtensions
 	{
-        public static PagedCollection<T> ToPagedCollection<T>(
-				this PagedResults<T> source, 
-				QueryParameters<T> queryParams)
+        public static PagedCollection<TEntity> ToPagedCollection<TModel, TEntity>(
+				this PagedResults<TEntity> source, 
+				QueryParameters<TModel> queryParams)
 			{
 
 				var collectionLink = Link.ToCollection(queryParams.ActionName);
 
-				var collection = PagedCollection<T>.Create<PagedCollection<T>>(collectionLink,
+				var collection = PagedCollection<TEntity>.Create<PagedCollection<TEntity>>(collectionLink,
 					source.Items.ToArray(),
 					source.TotalSize,
 					queryParams.PagingParameters
