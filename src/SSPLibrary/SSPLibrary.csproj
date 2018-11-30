@@ -5,7 +5,7 @@
     <Authors>Kamil Borowski</Authors>
     <Copyright>Copyright @2018 Kamil Borowski</Copyright>
     <Description>A library for ASP.Net Core to support paging, sorting and filtering queries.</Description>
-    <Version>0.3-alpha</Version>
+    <Version>0.3</Version>
     <AssemblyName>SSPLibrary</AssemblyName>
     <PackageId>SSPLibrary</PackageId>
     <PackageTags>ASP.NET Core;paging;sorting;filtering;</PackageTags>
